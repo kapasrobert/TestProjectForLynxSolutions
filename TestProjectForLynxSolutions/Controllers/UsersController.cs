@@ -51,7 +51,7 @@ namespace TestProjectForLynxSolutions.Controllers
         }
 
 
-        //Getting new user from view, and saving it into database
+        //Getting new user from view, and saving it to database
         [HttpPost]
         public ActionResult Create(User user)
         {
@@ -81,7 +81,7 @@ namespace TestProjectForLynxSolutions.Controllers
         }
 
 
-        //save the edited user to the database
+        //Save the edited user to the database
         [HttpPost]
         public ActionResult Save(User user)
         {
