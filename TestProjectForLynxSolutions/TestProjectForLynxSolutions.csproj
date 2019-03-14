@@ -141,6 +141,14 @@
     <Compile Include="Migrations\201903141656473_InitialModel.Designer.cs">
       <DependentUpon>201903141656473_InitialModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903141713203_PopulateUsers.cs" />
+    <Compile Include="Migrations\201903141713203_PopulateUsers.Designer.cs">
+      <DependentUpon>201903141713203_PopulateUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903141745091_ApplyAnnotationsToUsers.cs" />
+    <Compile Include="Migrations\201903141745091_ApplyAnnotationsToUsers.Designer.cs">
+      <DependentUpon>201903141745091_ApplyAnnotationsToUsers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\MyDbContext.cs" />
     <Compile Include="Models\User.cs" />
@@ -203,6 +211,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201903141656473_InitialModel.resx">
       <DependentUpon>201903141656473_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903141713203_PopulateUsers.resx">
+      <DependentUpon>201903141713203_PopulateUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903141745091_ApplyAnnotationsToUsers.resx">
+      <DependentUpon>201903141745091_ApplyAnnotationsToUsers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
