@@ -48,6 +48,7 @@
     </div>
 
     @Html.HiddenFor(m => m.Id)
+    @Html.AntiForgeryToken()
     <button type="submit" class="btn btn-primary">Save</button>
 }
 
@@ -59,6 +60,6 @@
          Ex: UserName textbox has all the validation values gathered from the User.UserName DataAnnotations and
          jquery.validate goes through each value of the textbox and compares it to the input value from the user;
 
-         only works with standard validation, for more complex validation we use server side validation to do the hard work-->
+         only works with standard validation, for more complex validation we need to write custom jQuery functions -->
     @Scripts.Render("~/bundles/jqueryval")
 }

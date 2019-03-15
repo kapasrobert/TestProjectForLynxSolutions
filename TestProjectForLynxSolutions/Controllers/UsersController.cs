@@ -69,6 +69,7 @@ namespace TestProjectForLynxSolutions.Controllers
 
         //Save a new user or edit an existing user
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(User user)
         {
             //server side validation
