@@ -1,5 +1,5 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 using TestProjectForLynxSolutions.Models;
 
@@ -99,10 +99,9 @@ namespace TestProjectForLynxSolutions.Controllers
 
                 myDbContext.SaveChanges();
             }
-            catch (Exception ex)
+            catch
             {
-                string exmsg = ex.Message;
-                //error message
+                throw new System.Web.Http.HttpResponseException(HttpStatusCode.InternalServerError);
             }
 
             return RedirectToAction("Index", "Users");
