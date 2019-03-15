@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web.Http;
@@ -17,14 +16,14 @@ namespace TestProjectForLynxSolutions.Controllers.API
         }
 
 
-        //GET /api/users
+        // GET /api/users
         public IEnumerable<User> GetUsers()
         {
             return myDbContext.Users.ToList();
         }
 
 
-        //GET api/users/1
+        // GET api/users/1
         public User GetUser(int id)
         {
             var user = myDbContext.Users.SingleOrDefault(u => u.Id == id);
@@ -36,7 +35,7 @@ namespace TestProjectForLynxSolutions.Controllers.API
         }
 
 
-        //POST /api/users
+        // POST /api/user
         [HttpPost]
         public User CreateUser(User user)
         {
@@ -57,7 +56,7 @@ namespace TestProjectForLynxSolutions.Controllers.API
         }
 
 
-        //PUT /api/usres/1
+        // PUT /api/users/1
         [HttpPut]
         public void UpdateUser(int id, User user)
         {
@@ -87,7 +86,7 @@ namespace TestProjectForLynxSolutions.Controllers.API
         }
 
 
-        //DELETE /api/users/1
+        // DELETE /api/users/1
         [HttpDelete]
         public void DeleteUser(int id)
         {
@@ -101,9 +100,9 @@ namespace TestProjectForLynxSolutions.Controllers.API
                 myDbContext.Users.Remove(userInDatabase);
                 myDbContext.SaveChanges();
             }
-            catch (Exception ex)
+            catch
             {
-                //handle error
+                throw new HttpResponseException(HttpStatusCode.InternalServerError);
             }
         }
     }
