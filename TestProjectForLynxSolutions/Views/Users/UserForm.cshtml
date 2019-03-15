@@ -9,34 +9,42 @@
 
 @using (@Html.BeginForm("Save", "Users"))
 {
+    @Html.ValidationSummary()
+
     <div class="form-group">
         @Html.LabelFor(m => m.UserName)
         @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(u => u.UserName)
     </div>
 
     <div class="form-group">
         @Html.LabelFor(m => m.Password)
         @Html.TextBoxFor(m => m.Password, new { @class = "form-control" })
+        @Html.ValidationMessageFor(u => u.Password)
     </div>
 
     <div class="form-group">
         @Html.LabelFor(m => m.FirstName)
         @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(u => u.FirstName)
     </div>
 
     <div class="form-group">
         @Html.LabelFor(m => m.LastName)
         @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(u => u.LastName)
     </div>
 
     <div class="form-group">
         @Html.LabelFor(m => m.Email)
         @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(u => u.Email);
     </div>
 
     <div class="form-group">
         @Html.LabelFor(m => m.PhoneNumber)
         @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+        @Html.ValidationMessageFor(u => u.PhoneNumber)
     </div>
 
     @Html.HiddenFor(m => m.Id)

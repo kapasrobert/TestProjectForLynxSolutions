@@ -47,7 +47,11 @@ namespace TestProjectForLynxSolutions.Controllers
         //Show new user creation page
         public ActionResult New()
         {
-            return View("UserForm");
+            //initialize the user object to automatically set the Id to 0, 
+            //otherwise the ValidationSummary will contain "The Id field is required"
+            var user = new User();
+
+            return View("UserForm", user);
         }
 
 
@@ -67,6 +71,14 @@ namespace TestProjectForLynxSolutions.Controllers
         [HttpPost]
         public ActionResult Save(User user)
         {
+            //server side validation
+            //check if user data is valid
+            if (!ModelState.IsValid)
+            {
+                return View("UserForm", user);
+            }
+
+            //try to save the new or existing user
             try
             {
                 if (user.Id == 0)  //create new user
