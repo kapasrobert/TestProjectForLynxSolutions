@@ -7,9 +7,24 @@
 
 <h2>Users</h2>
 
-<p>
-    @Html.ActionLink("Create New", "New")
-</p>
+<br />
+<br />
+
+<div class="container">
+    <div class="form-group">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+            <input type="text" id="search" placeholder="Search" class="form-control" />
+        </div>
+    </div>
+</div>
+
+<div class="text-right">
+    <p>
+        @Html.ActionLink("Create New", "New", null, new { @class = "btn btn-primary btn-large" })
+    </p>
+</div>
+
 <table id="users" class="table">
     <tr>
         <th>
@@ -34,7 +49,7 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
+    <tr class="tr-for-search">
         <td>
             @Html.DisplayFor(modelItem => item.UserName)
         </td>
@@ -69,6 +84,8 @@
     <script>
 
         $(document).ready(function () {
+
+            //delete with ajax
             $("#users").on("click", ".user-delete", function () {
                 var button = $(this);
 
@@ -77,17 +94,25 @@
                         $.ajax({
                             url: "/api/users/" + button.attr("data-user-id"),
                             method: "DELETE",
-                            success: UserSuccesfullyDeleted(button)
+                            success: button.parents("tr").remove()
                         });
                     }
                 });
-            });            
+            });  
+
+            //search
+            $("#search").keyup(function () {
+                var searchText = $(this).val().toLowerCase();
+                $(".tr-for-search").each(function () {
+                    if ($(this).text().toLowerCase().indexOf(searchText) !== -1) {
+                        $(this).show();
+                    }
+                    else {
+                        $(this).hide();
+                    }
+                });
+            });
         });
-
-
-        function UserSuccesfullyDeleted(button) {
-            button.parents("tr").remove();
-        }
 
     </script>
 }
