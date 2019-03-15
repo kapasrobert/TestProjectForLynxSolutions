@@ -45,7 +45,7 @@ namespace TestProjectForLynxSolutions.Controllers
 
 
         //Show new user creation page
-        public ActionResult New()
+        public ViewResult New()
         {
             //initialize the user object to automatically set the Id to 0, 
             //otherwise the ValidationSummary will contain "The Id field is required"
