@@ -1,5 +1,7 @@
 ﻿using System.Linq;
 using System.Net;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web.Mvc;
 using TestProjectForLynxSolutions.Models;
 
@@ -78,6 +80,17 @@ namespace TestProjectForLynxSolutions.Controllers
             {
                 return View("UserForm", user);
             }
+
+            //hash the password using SHA1 and store it that way in the database
+            SHA1 sha1 = SHA1.Create();
+            byte[] hashData = sha1.ComputeHash(Encoding.Default.GetBytes(user.Password));
+            StringBuilder hashedPassword = new StringBuilder();
+
+            for (int i = 0; i < hashData.Length; i++)
+                hashedPassword.Append(hashData[i].ToString());
+
+            user.Password = hashedPassword.ToString();
+
 
             //try to save the new or existing user
             try
