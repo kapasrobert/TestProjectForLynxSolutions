@@ -7,7 +7,7 @@
 
 <h2>New User</h2>
 
-@using (@Html.BeginForm("Create", "Users"))
+@using (@Html.BeginForm("Save", "Users"))
 {
     <div class="form-group">
         @Html.LabelFor(m => m.UserName)
@@ -39,6 +39,7 @@
         @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
     </div>
 
+    @Html.HiddenFor(m => m.Id)
     <button type="submit" class="btn btn-primary">Save</button>
 }
 

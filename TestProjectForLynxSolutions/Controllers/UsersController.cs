@@ -47,25 +47,7 @@ namespace TestProjectForLynxSolutions.Controllers
         //Show new user creation page
         public ActionResult New()
         {
-            return View();
-        }
-
-
-        //Getting new user from view, and saving it to database
-        [HttpPost]
-        public ActionResult Create(User user)
-        {
-            try
-            {
-                myDbContext.Users.Add(user);
-                myDbContext.SaveChanges();
-            }
-            catch(Exception ex)
-            {                
-                //error message
-            }
-
-            return RedirectToAction("Index", "Users");
+            return View("UserForm");
         }
 
 
@@ -77,29 +59,36 @@ namespace TestProjectForLynxSolutions.Controllers
             if (user == null)
                 return HttpNotFound();
 
-            return View(user);
+            return View("UserForm", user);
         }
 
 
-        //Save the edited user to the database
+        //Save a new user or edit an existing user
         [HttpPost]
         public ActionResult Save(User user)
         {
             try
             {
-                var userInDatabase = myDbContext.Users.Single(u => u.Id == user.Id);
-
-                userInDatabase.UserName = user.UserName;
-                userInDatabase.Password = user.Password;
-                userInDatabase.FirstName = user.FirstName;
-                userInDatabase.LastName = user.LastName;
-                userInDatabase.Email = user.Email;
-                userInDatabase.PhoneNumber = user.PhoneNumber;
+                if (user.Id == 0)  //create new user
+                {
+                    myDbContext.Users.Add(user);
+                }
+                else  //edit existing user
+                {
+                    var userInDatabase = myDbContext.Users.Single(u => u.Id == user.Id);
+                    userInDatabase.UserName = user.UserName;
+                    userInDatabase.Password = user.Password;
+                    userInDatabase.FirstName = user.FirstName;
+                    userInDatabase.LastName = user.LastName;
+                    userInDatabase.Email = user.Email;
+                    userInDatabase.PhoneNumber = user.PhoneNumber;
+                }
 
                 myDbContext.SaveChanges();
             }
             catch (Exception ex)
             {
+                string exmsg = ex.Message;
                 //error message
             }
 
